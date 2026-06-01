@@ -2,9 +2,11 @@
 🎓 Student Grade Tracker
 
 description
+
 Student Grade Tracker is a modern Java-based application designed to manage student academic records efficiently. The system allows users to add, update, search, and delete student records while automatically calculating grades, averages, rankings, and performance statistics. It provides an interactive dashboard with analytics, leaderboard rankings, and subject-wise performance tracking.
 
 ✨ Features
+
 ➕ Add new student records,
 ✏️ Update student grades,
 ❌ Delete student records,
@@ -21,6 +23,7 @@ Student Grade Tracker is a modern Java-based application designed to manage stud
 
 
 🛠️ Technologies Used
+
 Java,
 Java Swing,
 HTML,
@@ -31,24 +34,25 @@ CSV File Handling,
 
 
 📊 Functionalities
-Student Management
-Add student details
-Store marks for multiple subjects
-Edit student information
-Remove records
-Grade Processing
-Calculate average marks
-Determine letter grades
-Generate pass/fail status
-Calculate highest and lowest scores
-Analytics Dashboard
-Class average calculation
-Grade distribution charts
-Subject performance metrics
-Student ranking system
 
-🚀 How to Run
-Java Application
+Student Management,
+Add student details,
+Store marks for multiple subjects,
+Edit student information,
+Remove records,
+Grade Processing,
+Calculate average marks,
+Determine letter grades,
+Generate pass/fail status,
+Calculate highest and lowest scores,
+Analytics Dashboard,
+Class average calculation,
+Grade distribution charts,
+Subject performance metrics,
+Student ranking system,
+
+🚀 How to Run Java Application
+
 *Clone the repository
 *git clone https://github.com/your-username/CodeAlpha_StudentGradeTracker.git
 *Open the project in VS Code or any Java IDE
@@ -58,6 +62,7 @@ Java Application
 *java StudentGradeTracker1
 
 Web Dashboard
+
 *Open StudentGradeTracker.html
 *Launch in any modern browser
 *Start managing student records
