@@ -5,29 +5,29 @@ description
 Student Grade Tracker is a modern Java-based application designed to manage student academic records efficiently. The system allows users to add, update, search, and delete student records while automatically calculating grades, averages, rankings, and performance statistics. It provides an interactive dashboard with analytics, leaderboard rankings, and subject-wise performance tracking.
 
 ✨ Features
-➕ Add new student records
-✏️ Update student grades
-❌ Delete student records
-🔍 Search students by name or roll number
-📊 Automatic grade calculation (A, B, C, D, F)
-📈 Class performance analytics
-🏆 Student leaderboard and rankings
-📚 Subject-wise performance analysis
-📥 Export data to CSV
-📤 Import data from CSV
-🌙 Dark Mode / ☀️ Light Mode
-📱 Responsive and modern user interface
-📋 Summary reports and statistics
+➕ Add new student records,
+✏️ Update student grades,
+❌ Delete student records,
+🔍 Search students by name or roll number,
+📊 Automatic grade calculation (A, B, C, D, F),
+📈 Class performance analytics,
+🏆 Student leaderboard and rankings,
+📚 Subject-wise performance analysis,
+📥 Export data to CSV,
+📤 Import data from CSV,
+🌙 Dark Mode / ☀️ Light Mode,
+📱 Responsive and modern user interface,
+📋 Summary reports and statistics,
 
 
 🛠️ Technologies Used
-Java
-Java Swing
-HTML
-CSS
-JavaScript
-Object-Oriented Programming (OOP)
-CSV File Handling
+Java,
+Java Swing,
+HTML,
+CSS,
+JavaScript,
+Object-Oriented Programming (OOP),
+CSV File Handling,
 
 
 📊 Functionalities
