@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -62,13 +68,14 @@ class Student {
 // ─────────────────────────────────────────────
 public class StudentGradeTracker {
 
+    static final String DB_FILE = "students_db.csv";
     static ArrayList<Student> students = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     static final String[] SUBJECTS = {"Math", "Science", "English", "History", "Computer"};
 
     // ── Entry point ──────────────────────────
     public static void main(String[] args) {
-        loadSampleData(); // pre-load a few sample students
+        loadFromDatabase(); // load existing records or pre-load sample data
         System.out.println("\n╔══════════════════════════════════════╗");
         System.out.println("║      STUDENT GRADE TRACKER v1.0      ║");
         System.out.println("╚══════════════════════════════════════╝");
@@ -134,6 +141,7 @@ public class StudentGradeTracker {
         }
 
         students.add(new Student(name, roll, grades));
+        saveToDatabase();
         System.out.println("\n  ✓ Student '" + name + "' added successfully!");
     }
 
@@ -198,6 +206,7 @@ public class StudentGradeTracker {
         }
         s.getGrades().clear();
         s.getGrades().addAll(updated);
+        saveToDatabase();
         System.out.println("  ✓ Grades updated for " + s.getName() + ".");
     }
 
@@ -215,6 +224,7 @@ public class StudentGradeTracker {
         String confirm = scanner.nextLine().trim();
         if (confirm.equalsIgnoreCase("yes")) {
             students.remove(s);
+            saveToDatabase();
             System.out.println("  ✓ Student deleted.");
         } else {
             System.out.println("  Cancelled.");
@@ -404,5 +414,51 @@ public class StudentGradeTracker {
         ArrayList<Double> g = new ArrayList<>();
         for (double s : scores) g.add(s);
         students.add(new Student(name, roll, g));
+    }
+
+    // ── Database Persistence ─────────────────
+    static void saveToDatabase() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(DB_FILE))) {
+            // CSV Header
+            writer.println("Roll Number,Full Name,Math Score,Science Score,English Score,History Score,Computer Score");
+            for (Student s : students) {
+                ArrayList<Double> g = s.getGrades();
+                writer.printf("%s,%s,%.1f,%.1f,%.1f,%.1f,%.1f%n",
+                    s.getRollNo(), s.getName().replace(",", ""), g.get(0), g.get(1), g.get(2), g.get(3), g.get(4));
+            }
+        } catch (IOException e) {
+            System.out.println("  ✗ Error saving to database file: " + e.getMessage());
+        }
+    }
+
+    static void loadFromDatabase() {
+        students.clear();
+        File file = new File(DB_FILE);
+        if (!file.exists()) {
+            loadSampleData();
+            saveToDatabase();
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line = reader.readLine(); // skip header row
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+                String[] parts = line.split(",");
+                if (parts.length < 7) continue;
+
+                String roll = parts[0].trim();
+                String name = parts[1].trim();
+                ArrayList<Double> grades = new ArrayList<>();
+                for (int i = 2; i < 7; i++) {
+                    grades.add(Double.parseDouble(parts[i].trim()));
+                }
+                students.add(new Student(name, roll, grades));
+            }
+        } catch (Exception e) {
+            System.out.println("  ✗ Error loading database: " + e.getMessage() + ". Loading sample data instead.");
+            loadSampleData();
+        }
     }
 }
