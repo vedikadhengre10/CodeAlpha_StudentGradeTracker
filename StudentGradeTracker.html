@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Grade Tracker Dashboard</title>
-  <meta name="description" content="A state-of-the-art Student Grade Tracker dashboard. Add student records, track scores across five subjects, generate summary reports, analyze performance, and view class rankings." />
+  <meta name="description" content="A state-of-the-art Student Grade Tracker dashboard. Add custom subjects, obtained and total marks, track rankings, separate accounts, and generate full reports." />
 </head>
 <body>
   <h2 class="sr-only">Student Grade Tracker Dashboard — track scores, analyze statistics, and view class rankings</h2>
@@ -388,7 +388,7 @@
     letter-spacing: 0.04em;
   }
 
-  input[type="text"], input[type="number"], select {
+  input[type="text"], input[type="number"], input[type="password"], select {
     width: 100%;
     background: var(--color-bg-surface-secondary);
     border: 1px solid var(--color-border-primary);
@@ -401,93 +401,16 @@
     outline: none;
   }
 
-  input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus, select:focus {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--color-primary-light);
     background: var(--color-bg-surface);
   }
 
-  /* Subject Range Slider component styling */
-  .subject-slider-container {
-    background: var(--color-bg-surface-secondary);
-    border: 1px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-md);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-left: 4px solid var(--slider-color, var(--color-primary));
-  }
-
-  .slider-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  /* Subject list builder row styling */
+  .subject-row {
     margin-bottom: 8px;
-  }
-
-  .slider-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--color-text-primary);
-  }
-
-  .slider-badge {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--slider-color, var(--color-primary));
-    background: var(--color-bg-surface);
-    padding: 2px 8px;
-    border-radius: 20px;
-    border: 1px solid var(--color-border-secondary);
-    min-width: 38px;
-    text-align: center;
-  }
-
-  .slider-bar-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  input[type="range"] {
-    flex: 1;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 6px;
-    border-radius: 99px;
-    background: var(--color-border-primary);
-    outline: none;
-    transition: background 0.2s;
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--slider-color, var(--color-primary));
-    cursor: pointer;
-    transition: transform 0.1s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-
-  input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border: none;
-    border-radius: 50%;
-    background: var(--slider-color, var(--color-primary));
-    cursor: pointer;
-    transition: transform 0.1s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-
-  input[type="range"]::-moz-range-thumb:hover {
-    transform: scale(1.2);
+    animation: fadeIn 0.25s ease;
   }
 
   .form-actions {
@@ -637,21 +560,6 @@
 
   .status-pass { background: var(--color-success-bg); color: var(--color-success); }
   .status-fail { background: var(--color-danger-bg); color: var(--color-danger); }
-
-  /* Micro subject grade cell styling */
-  .subject-grade-cell {
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .subject-name-sub {
-    font-size: 9px;
-    font-weight: 700;
-    color: var(--color-text-tertiary);
-    text-transform: uppercase;
-  }
 
   /* Table Action Row buttons */
   .action-btns {
@@ -934,6 +842,125 @@
     max-width: 260px;
     margin: 0 auto;
   }
+
+  /* Premium Responsive Mobile Optimizations */
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem 0.5rem;
+    }
+    
+    .d-wrap {
+      padding: 1.25rem;
+      border-radius: var(--border-radius-lg);
+    }
+    
+    .d-header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .d-brand {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .d-actions {
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    
+    .d-actions button, .d-actions .btn-upload-label {
+      flex: 1 1 calc(50% - 8px);
+      min-width: 120px;
+      font-size: 12px;
+      padding: 8px 12px;
+    }
+    
+    .d-actions .theme-toggle {
+      flex: 0 0 auto;
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    
+    .stat-card {
+      padding: 1rem;
+    }
+    
+    .stat-val {
+      font-size: 24px;
+    }
+    
+    .panel-card {
+      padding: 1.25rem;
+    }
+    
+    .controls-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+    
+    .search-wrap, .sort-wrap {
+      width: 100%;
+    }
+    
+    .sort-wrap {
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .d-actions button, .d-actions .btn-upload-label {
+      flex: 1 1 100%; /* stack actions completely on extra-small viewports */
+    }
+    
+    /* Tactile stacking for dynamic subject rows on tiny screens */
+    .subject-row {
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      padding: 12px 36px 12px 12px !important;
+      position: relative;
+    }
+    
+    .subject-row .sub-name-input {
+      flex: 1 1 100% !important;
+    }
+    
+    .subject-row .sub-obtained-input, 
+    .subject-row .sub-total-input {
+      flex: 1 1 calc(50% - 10px) !important;
+      max-width: 45%;
+    }
+    
+    .subject-row .btn-delete {
+      position: absolute;
+      top: 12px;
+      right: 10px;
+      width: 26px !important;
+      height: 26px !important;
+    }
+    
+    .tabs-nav {
+      flex-direction: column;
+      gap: 4px;
+      border-radius: var(--border-radius-md);
+    }
+    
+    .tab-btn {
+      width: 100%;
+    }
+  }
 </style>
 
 <div class="d-wrap">
@@ -946,7 +973,14 @@
         <p class="d-subtitle">Premium Multi-Subject Academic Dashboard</p>
       </div>
     </div>
-    <div class="d-actions">
+    <div class="d-actions" id="header-actions" style="display: none">
+      <!-- User profile chip -->
+      <div id="user-profile-badge" style="display: flex; align-items: center; gap: 8px; background: var(--color-bg-surface-secondary); padding: 5px 12px; border-radius: 99px; border: 1px solid var(--color-border-primary); margin-right: 4px;">
+        <div id="user-avatar" style="width: 24px; height: 24px; border-radius: 50%; background: var(--primary-gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 800;">U</div>
+        <span id="user-username" style="font-weight: 700; font-size: 13px; color: var(--color-text-primary)">Username</span>
+      </div>
+      <button class="theme-toggle" onclick="logout()" title="Log Out" style="margin-right: 8px; font-size: 14px;">🚪</button>
+      
       <button class="btn-secondary" onclick="loadSampleData()" title="Load default sample dataset">
         <span>⚡</span> Load Sample Data
       </button>
@@ -968,241 +1002,285 @@
     </div>
   </header>
 
-  <!-- Statistics Grid -->
-  <section class="stats-grid" aria-label="Class Statistics">
-    <div class="stat-card">
-      <p class="stat-label">Students Enrolled</p>
-      <h3 class="stat-val" id="stat-count">0</h3>
-      <p class="stat-sub">active records</p>
-    </div>
-    <div class="stat-card">
-      <p class="stat-label">Class Average</p>
-      <h3 class="stat-val" id="stat-avg">0.0</h3>
-      <p class="stat-sub" id="stat-avg-grade">Grade —</p>
-    </div>
-    <div class="stat-card stat-top">
-      <p class="stat-label">Top Performer</p>
-      <h3 class="stat-val" id="stat-top-val">0.0</h3>
-      <p class="stat-sub" id="stat-top-name">—</p>
-    </div>
-    <div class="stat-card stat-pass">
-      <p class="stat-label">Overall Pass Rate</p>
-      <h3 class="stat-val" id="stat-pass-val">0%</h3>
-      <p class="stat-sub" id="stat-pass-desc">score &ge; 60%</p>
-    </div>
-  </section>
-
-  <!-- Main Grid Content -->
-  <main class="main-grid">
-    
-    <!-- Left Column: Add/Edit Student Form -->
-    <section class="panel-card" aria-labelledby="form-card-title">
-      <div class="panel-header">
-        <h2 class="panel-title" id="form-card-title">
-          <span>📝</span> <span id="form-title-text">Add New Student</span>
-        </h2>
-      </div>
+  <!-- Authentication View -->
+  <div id="auth-view" style="display: block;">
+    <div class="panel-card" style="max-width: 440px; margin: 3rem auto; padding: 2.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-xl); border: 1px solid var(--glass-border); background: var(--color-bg-surface); animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;">
       
-      <form id="student-form" onsubmit="handleFormSubmit(event)">
-        <input type="hidden" id="edit-id" value="" />
-        
+      <!-- Premium glowing accent band at the top of the auth card -->
+      <div style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--primary-gradient);"></div>
+      
+      <!-- Brand Header -->
+      <div style="text-align: center; margin-bottom: 1.75rem;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--primary-gradient); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 24px; margin-bottom: 0.75rem; box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);" id="auth-logo">🔑</div>
+        <h2 id="auth-title" style="font-size: 20px; font-weight: 800; color: var(--color-text-primary); letter-spacing: -0.02em;">Teacher Portal</h2>
+        <p id="auth-subtitle" style="font-size: 12px; color: var(--color-text-tertiary); margin-top: 4px;">Access your private grades and subject dashboards</p>
+      </div>
+
+      <!-- Mode Toggle Buttons -->
+      <div style="display: flex; gap: 8px; background: var(--color-bg-surface-secondary); border: 1px solid var(--color-border-secondary); padding: 5px; border-radius: var(--border-radius-md); margin-bottom: 2rem;">
+        <button class="tab-btn active" id="btn-login-tab" onclick="switchAuthTab('login')" style="flex: 1; text-transform: uppercase; letter-spacing: 0.05em; font-size: 11px; padding: 8px;">🔑 Log In</button>
+        <button class="tab-btn" id="btn-signup-tab" onclick="switchAuthTab('signup')" style="flex: 1; text-transform: uppercase; letter-spacing: 0.05em; font-size: 11px; padding: 8px;">👤 Register</button>
+      </div>
+
+      <!-- Log In Form -->
+      <form id="login-form" onsubmit="handleLogin(event)">
         <div class="form-group">
-          <label class="form-label" for="inp-name">Full Name</label>
-          <input type="text" id="inp-name" placeholder="e.g. Sneha Patil" required />
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label" for="inp-roll">Roll Number</label>
-          <input type="text" id="inp-roll" placeholder="e.g. 102" required />
-        </div>
-        
-        <!-- Subject Grade Sliders -->
-        <div class="form-group" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          <span class="form-label">Subject Scores (0 – 100)</span>
-        </div>
-        
-        <!-- Math Slider -->
-        <div class="subject-slider-container" style="--slider-color: var(--color-math)">
-          <div class="slider-header">
-            <span class="slider-title">Math</span>
-            <span class="slider-badge" id="badge-math">80</span>
-          </div>
-          <div class="slider-bar-row">
-            <input type="range" id="score-math" min="0" max="100" value="80" oninput="updateSliderBadge('math')" aria-label="Math Score" />
+          <label class="form-label" for="login-cred">Username, Email, or Phone</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="text" id="login-cred" placeholder="e.g. username / email" style="padding-left: 38px; width: 100%;" required />
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; opacity: 0.65; pointer-events: none;">👤</span>
           </div>
         </div>
-        
-        <!-- Science Slider -->
-        <div class="subject-slider-container" style="--slider-color: var(--color-science)">
-          <div class="slider-header">
-            <span class="slider-title">Science</span>
-            <span class="slider-badge" id="badge-science">80</span>
-          </div>
-          <div class="slider-bar-row">
-            <input type="range" id="score-science" min="0" max="100" value="80" oninput="updateSliderBadge('science')" aria-label="Science Score" />
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" for="login-pass">Password</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="login-pass" placeholder="••••••••" style="padding-left: 38px; width: 100%;" required />
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; opacity: 0.65; pointer-events: none;">🔒</span>
           </div>
         </div>
-        
-        <!-- English Slider -->
-        <div class="subject-slider-container" style="--slider-color: var(--color-english)">
-          <div class="slider-header">
-            <span class="slider-title">English</span>
-            <span class="slider-badge" id="badge-english">80</span>
-          </div>
-          <div class="slider-bar-row">
-            <input type="range" id="score-english" min="0" max="100" value="80" oninput="updateSliderBadge('english')" aria-label="English Score" />
-          </div>
-        </div>
-        
-        <!-- History Slider -->
-        <div class="subject-slider-container" style="--slider-color: var(--color-history)">
-          <div class="slider-header">
-            <span class="slider-title">History</span>
-            <span class="slider-badge" id="badge-history">80</span>
-          </div>
-          <div class="slider-bar-row">
-            <input type="range" id="score-history" min="0" max="100" value="80" oninput="updateSliderBadge('history')" aria-label="History Score" />
-          </div>
-        </div>
-        
-        <!-- Computer Slider -->
-        <div class="subject-slider-container" style="--slider-color: var(--color-computer)">
-          <div class="slider-header">
-            <span class="slider-title">Computer Science</span>
-            <span class="slider-badge" id="badge-computer">80</span>
-          </div>
-          <div class="slider-bar-row">
-            <input type="range" id="score-computer" min="0" max="100" value="80" oninput="updateSliderBadge('computer')" aria-label="Computer Score" />
-          </div>
-        </div>
-        
-        <p id="err-msg" style="color:var(--color-danger); font-size:13px; font-weight:600; margin:10px 0; display:none;"></p>
-        
-        <div class="form-actions">
-          <button type="submit" class="btn-primary" id="btn-submit">
-            <span>+</span> Add Student
-          </button>
-          <button type="button" class="btn-secondary" id="btn-cancel" onclick="resetForm()" style="display: none;">
-            Cancel
-          </button>
-        </div>
+        <p id="login-err" style="color: var(--color-danger); font-size: 12px; font-weight: 600; margin: -0.5rem 0 1.25rem; display: none; text-align: center; padding: 8px; border-radius: var(--border-radius-sm); background: var(--color-danger-bg); border: 1px solid rgba(239, 68, 68, 0.15);"></p>
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 12px; font-size: 14px; border-radius: var(--border-radius-md);">
+          Log In
+        </button>
       </form>
+
+      <!-- Register Form -->
+      <form id="signup-form" onsubmit="handleSignup(event)" style="display: none;">
+        <div class="form-group">
+          <label class="form-label" for="signup-username">Username</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="text" id="signup-username" placeholder="e.g. username" style="padding-left: 38px; width: 100%;" required />
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; opacity: 0.65; pointer-events: none;">👤</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email or Phone Number</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="text" id="signup-email" placeholder="e.g. email@example.com" style="padding-left: 38px; width: 100%;" required />
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; opacity: 0.65; pointer-events: none;">📧</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-pass">Password</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="signup-pass" placeholder="••••••••" style="padding-left: 38px; width: 100%;" oninput="validatePasswordCriteria()" required />
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; opacity: 0.65; pointer-events: none;">🔒</span>
+          </div>
+          <!-- Dynamic criteria checks -->
+          <div class="password-criteria-checker" style="margin-top: 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 12px; background: var(--color-bg-surface-secondary); padding: 12px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border-secondary);">
+            <div id="crit-length" style="font-size: 11px; font-weight: 700; color: var(--color-danger); display: flex; align-items: center; gap: 8px; transition: color 0.25s ease;">
+              <span class="crit-dot" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-danger); transition: background-color 0.25s ease; flex-shrink: 0;"></span>
+              8+ Characters
+            </div>
+            <div id="crit-upper" style="font-size: 11px; font-weight: 700; color: var(--color-danger); display: flex; align-items: center; gap: 8px; transition: color 0.25s ease;">
+              <span class="crit-dot" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-danger); transition: background-color 0.25s ease; flex-shrink: 0;"></span>
+              Uppercase Letter
+            </div>
+            <div id="crit-lower" style="font-size: 11px; font-weight: 700; color: var(--color-danger); display: flex; align-items: center; gap: 8px; transition: color 0.25s ease;">
+              <span class="crit-dot" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-danger); transition: background-color 0.25s ease; flex-shrink: 0;"></span>
+              Lowercase Letter
+            </div>
+            <div id="crit-digit" style="font-size: 11px; font-weight: 700; color: var(--color-danger); display: flex; align-items: center; gap: 8px; transition: color 0.25s ease;">
+              <span class="crit-dot" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-danger); transition: background-color 0.25s ease; flex-shrink: 0;"></span>
+              One Digit
+            </div>
+            <div id="crit-spec" style="font-size: 11px; font-weight: 700; color: var(--color-danger); display: flex; align-items: center; gap: 8px; transition: color 0.25s ease; grid-column: span 2;">
+              <span class="crit-dot" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-danger); transition: background-color 0.25s ease; flex-shrink: 0;"></span>
+              Special Char (@$!%*?&amp;)
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" for="signup-confirm">Confirm Password</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="signup-confirm" placeholder="••••••••" style="padding-left: 38px; width: 100%;" required />
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; opacity: 0.65; pointer-events: none;">🔄</span>
+          </div>
+        </div>
+        <p id="signup-err" style="color: var(--color-danger); font-size: 12px; font-weight: 600; margin: -0.5rem 0 1.25rem; display: none; text-align: center; padding: 8px; border-radius: var(--border-radius-sm); background: var(--color-danger-bg); border: 1px solid rgba(239, 68, 68, 0.15);"></p>
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 12px; font-size: 14px; border-radius: var(--border-radius-md);">
+          Create Account
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="dashboard-view" style="display: none;">
+    <!-- Statistics Grid -->
+    <section class="stats-grid" aria-label="Class Statistics">
+      <div class="stat-card">
+        <p class="stat-label">Students Enrolled</p>
+        <h3 class="stat-val" id="stat-count">0</h3>
+        <p class="stat-sub">active records</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Class Average</p>
+        <h3 class="stat-val" id="stat-avg">0.0</h3>
+        <p class="stat-sub" id="stat-avg-grade">Grade —</p>
+      </div>
+      <div class="stat-card stat-top">
+        <p class="stat-label">Top Performer</p>
+        <h3 class="stat-val" id="stat-top-val">0.0</h3>
+        <p class="stat-sub" id="stat-top-name">—</p>
+      </div>
+      <div class="stat-card stat-pass">
+        <p class="stat-label">Overall Pass Rate</p>
+        <h3 class="stat-val" id="stat-pass-val">0%</h3>
+        <p class="stat-sub" id="stat-pass-desc">score &ge; 60%</p>
+      </div>
     </section>
 
-    <!-- Right Column: Navigation Tabs and Table Data -->
-    <section class="tabs-container">
-      <nav class="tabs-nav" aria-label="Dashboard views">
-        <button class="tab-btn active" id="tab-roster-btn" onclick="switchTab('roster')" aria-selected="true" role="tab">
-          📁 Roster
-        </button>
-        <button class="tab-btn" id="tab-analytics-btn" onclick="switchTab('analytics')" aria-selected="false" role="tab">
-          📊 Analytics & Report
-        </button>
-        <button class="tab-btn" id="tab-leaderboard-btn" onclick="switchTab('leaderboard')" aria-selected="false" role="tab">
-          🏆 Leaderboard
-        </button>
-      </nav>
-
-      <!-- Roster View -->
-      <div id="tab-roster">
-        <div class="controls-row">
-          <div class="search-wrap">
-            <input type="text" id="search-inp" placeholder="🔍 Search by name or roll number…" oninput="renderData()" aria-label="Search students" />
-          </div>
-          <div class="sort-wrap">
-            <label for="sort-sel" class="form-label" style="margin-bottom:0; font-size:11px;">Sort By</label>
-            <select id="sort-sel" onchange="renderData()">
-              <option value="name">Name</option>
-              <option value="roll">Roll No</option>
-              <option value="avg-desc">Overall Average (High to Low)</option>
-              <option value="avg-asc">Overall Average (Low to High)</option>
-              <option value="math-desc">Math Score</option>
-              <option value="science-desc">Science Score</option>
-              <option value="english-desc">English Score</option>
-              <option value="history-desc">History Score</option>
-              <option value="computer-desc">Computer Score</option>
-            </select>
-          </div>
+    <!-- Main Grid Content -->
+    <main class="main-grid">
+      
+      <!-- Left Column: Add/Edit Student Form -->
+      <section class="panel-card" aria-labelledby="form-card-title">
+        <div class="panel-header">
+          <h2 class="panel-title" id="form-card-title">
+            <span>📝</span> <span id="form-title-text">Add New Student</span>
+          </h2>
         </div>
-
-        <div class="table-responsive">
-          <table class="d-table" aria-label="Student grade records table">
-            <thead>
-              <tr>
-                <th style="width: 80px">Roll</th>
-                <th>Name</th>
-                <th style="width: 70px; text-align: center">Math</th>
-                <th style="width: 70px; text-align: center">Sci</th>
-                <th style="width: 70px; text-align: center">Eng</th>
-                <th style="width: 70px; text-align: center">His</th>
-                <th style="width: 70px; text-align: center">Comp</th>
-                <th style="width: 140px">Average</th>
-                <th style="width: 100px; text-align: center">Grade</th>
-                <th style="width: 80px; text-align: center">Status</th>
-                <th style="width: 90px; text-align: center">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="roster-body"></tbody>
-          </table>
-        </div>
-        <div id="empty-state" class="empty-state" style="display: none;">
-          <div class="empty-icon" aria-hidden="true">📂</div>
-          <h3 class="empty-title">No Students Registered</h3>
-          <p class="empty-text">Click "Load Sample Data" or fill out the form on the left to add students.</p>
-        </div>
-      </div>
-
-      <!-- Analytics View -->
-      <div id="tab-analytics" style="display: none;">
-        <div class="analytics-wrap">
+        
+        <form id="student-form" onsubmit="handleFormSubmit(event)">
+          <input type="hidden" id="edit-id" value="" />
           
-          <!-- Grade Distribution CSS Bar Chart -->
-          <div class="bar-chart-card">
-            <h3 class="panel-title" style="margin-bottom: 1.25rem;">
-              <span>📈</span> Grade Distribution Report
-            </h3>
-            <div id="dist-bars"></div>
+          <div class="form-group">
+            <label class="form-label" for="inp-name">Full Name</label>
+            <input type="text" id="inp-name" placeholder="e.g. Sneha Patil" required />
           </div>
           
-          <!-- Subject Performance Grid -->
-          <div>
-            <h3 class="panel-title" style="margin-bottom: 1.25rem;">
-              <span>✏️</span> Subject Performance Metrics
-            </h3>
-            <div class="subject-stats-grid" id="subject-stats"></div>
+          <div class="form-group">
+            <label class="form-label" for="inp-roll">Roll Number</label>
+            <input type="text" id="inp-roll" placeholder="e.g. 102" required />
           </div>
           
-        </div>
-      </div>
-
-      <!-- Leaderboard View -->
-      <div id="tab-leaderboard" style="display: none;">
-        <div class="panel-card" style="padding: 1.5rem">
-          <div class="panel-header" style="margin-bottom: 1.25rem;">
-            <h3 class="panel-title">
-              <span>👑</span> Class Leaderboard rankings
-            </h3>
+          <!-- Dynamic Subject List Container -->
+          <div class="form-group" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            <span class="form-label" style="margin-bottom: 2px;">Subjects & Scores</span>
+            <div id="subject-fields-container" style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
+              <!-- Dynamic rows will be inserted here -->
+            </div>
+            <button type="button" class="btn-secondary" onclick="addSubjectFieldRow()" style="width: 100%; margin-top: 12px; font-size: 12px; padding: 8px 12px; background: var(--color-bg-surface-secondary); border: 1px dashed var(--color-border-primary);">
+              ➕ Add Custom Subject
+            </button>
           </div>
-          <div class="leaderboard-list" id="leaderboard-container"></div>
-        </div>
-      </div>
+          
+          <p id="err-msg" style="color:var(--color-danger); font-size:13px; font-weight:600; margin:10px 0; display:none;"></p>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" id="btn-submit">
+              <span>+</span> Add Student
+            </button>
+            <button type="button" class="btn-secondary" id="btn-cancel" onclick="resetForm()" style="display: none;">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
 
-    </section>
-  </main>
+      <!-- Right Column: Navigation Tabs and Table Data -->
+      <section class="tabs-container">
+        <nav class="tabs-nav" aria-label="Dashboard views">
+          <button class="tab-btn active" id="tab-roster-btn" onclick="switchTab('roster')" aria-selected="true" role="tab">
+            📁 Roster
+          </button>
+          <button class="tab-btn" id="tab-analytics-btn" onclick="switchTab('analytics')" aria-selected="false" role="tab">
+            📊 Analytics & Report
+          </button>
+          <button class="tab-btn" id="tab-leaderboard-btn" onclick="switchTab('leaderboard')" aria-selected="false" role="tab">
+            🏆 Leaderboard
+          </button>
+        </nav>
+
+        <!-- Roster View -->
+        <div id="tab-roster">
+          <div class="controls-row">
+            <div class="search-wrap">
+              <input type="text" id="search-inp" placeholder="🔍 Search by name or roll number…" oninput="renderData()" aria-label="Search students" />
+            </div>
+            <div class="sort-wrap">
+              <label for="sort-sel" class="form-label" style="margin-bottom:0; font-size:11px;">Sort By</label>
+              <select id="sort-sel" onchange="renderData()">
+                <!-- Options populated dynamically in JS -->
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="d-table" aria-label="Student grade records table">
+              <thead>
+                <tr>
+                  <th style="width: 80px">Roll</th>
+                  <th>Name</th>
+                  <th>Enrolled Subjects</th>
+                  <th style="width: 140px; text-align: center">Marks Obtained</th>
+                  <th style="width: 140px">Percentage</th>
+                  <th style="width: 90px; text-align: center">Grade</th>
+                  <th style="width: 90px; text-align: center">Status</th>
+                  <th style="width: 90px; text-align: center">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="roster-body"></tbody>
+            </table>
+          </div>
+          <div id="empty-state" class="empty-state" style="display: none;">
+            <div class="empty-icon" aria-hidden="true">📂</div>
+            <h3 class="empty-title">No Students Registered</h3>
+            <p class="empty-text">Click "Load Sample Data" or fill out the form on the left to add students.</p>
+          </div>
+        </div>
+
+        <!-- Analytics View -->
+        <div id="tab-analytics" style="display: none;">
+          <div class="analytics-wrap">
+            
+            <!-- Grade Distribution CSS Bar Chart -->
+            <div class="bar-chart-card">
+              <h3 class="panel-title" style="margin-bottom: 1.25rem;">
+                <span>📈</span> Grade Distribution Report
+              </h3>
+              <div id="dist-bars"></div>
+            </div>
+            
+            <!-- Subject Performance Grid -->
+            <div>
+              <h3 class="panel-title" style="margin-bottom: 1.25rem;">
+                <span>✏️</span> Subject Performance Metrics
+              </h3>
+              <div class="subject-stats-grid" id="subject-stats"></div>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Leaderboard View -->
+        <div id="tab-leaderboard" style="display: none;">
+          <div class="panel-card" style="padding: 1.5rem">
+            <div class="panel-header" style="margin-bottom: 1.25rem;">
+              <h3 class="panel-title">
+                <span>👑</span> Class Leaderboard rankings
+              </h3>
+            </div>
+            <div class="leaderboard-list" id="leaderboard-container"></div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
 </div>
 
 <script>
   let students = [];
   let currentTab = 'roster';
+  let expandedStudents = new Set();
 
-  const SUBJECTS = ["math", "science", "english", "history", "computer"];
-  const SUBJECT_LABELS = {
-    math: "Math",
-    science: "Science",
-    english: "English",
-    history: "History",
-    computer: "Computer"
-  };
+  // Authentication State
+  let users = [];
+  let currentUser = null;
+  let currentAuthTab = 'login';
+
+  // Math, Science, English, etc. dynamic fallback colors
   const SUBJECT_COLORS = {
     math: "var(--color-math)",
     science: "var(--color-science)",
@@ -1212,10 +1290,17 @@
   };
 
   // Grade computation standard mapping
-  const calculateAverage = grades => {
-    let sum = 0;
-    SUBJECTS.forEach(s => sum += grades[s]);
-    return Math.round((sum / SUBJECTS.length) * 10) / 10;
+  const calculateStudentPercentage = (s) => {
+    const list = s.subjectsList || [];
+    if (list.length === 0) return 0;
+    let sumObtained = 0;
+    let sumTotal = 0;
+    list.forEach(sub => {
+      sumObtained += sub.obtained;
+      sumTotal += sub.total;
+    });
+    if (sumTotal === 0) return 0;
+    return Math.round((sumObtained / sumTotal * 100) * 10) / 10;
   };
 
   const getLetterGrade = avg => {
@@ -1266,14 +1351,77 @@
     }
   };
 
-  // Interactive Form Elements Badge sync
-  const updateSliderBadge = (sub) => {
-    const score = document.getElementById(`score-${sub}`).value;
-    document.getElementById(`badge-${sub}`).textContent = score;
+  // Expand / collapse a student detailed report card
+  const toggleReportCard = (id) => {
+    if (expandedStudents.has(id)) {
+      expandedStudents.delete(id);
+    } else {
+      expandedStudents.add(id);
+    }
+    renderData();
   };
 
-  const resetSliderBadges = () => {
-    SUBJECTS.forEach(updateSliderBadge);
+  // Interactive Form dynamic subject row builder
+  const addSubjectFieldRow = (name = '', obtained = '', total = 100) => {
+    const container = document.getElementById('subject-fields-container');
+    const row = document.createElement('div');
+    row.className = 'subject-row';
+    row.style.display = 'flex';
+    row.style.gap = '8px';
+    row.style.alignItems = 'center';
+    row.style.background = 'var(--color-bg-surface-secondary)';
+    row.style.border = '1px solid var(--color-border-secondary)';
+    row.style.padding = '8px';
+    row.style.borderRadius = 'var(--border-radius-md)';
+    row.style.animation = 'fadeIn 0.25s ease';
+    
+    row.innerHTML = `
+      <input type="text" placeholder="Subject (e.g. Math)" class="sub-name-input" value="${escHtml(name)}" style="flex: 2; font-size: 12px; padding: 6px 10px;" required />
+      <input type="number" placeholder="Obtained" class="sub-obtained-input" min="0" value="${obtained}" style="flex: 1.2; font-size: 12px; padding: 6px 8px;" required />
+      <span style="font-size: 11px; font-weight: 600; color: var(--color-text-tertiary)">/</span>
+      <input type="number" placeholder="Max" class="sub-total-input" min="1" value="${total}" style="flex: 1.2; font-size: 12px; padding: 6px 8px;" required />
+      <button type="button" class="btn-icon btn-delete" onclick="this.parentElement.remove()" style="width: 28px; height: 28px; font-size: 12px; flex-shrink: 0;" aria-label="Remove subject">❌</button>
+    `;
+    
+    container.appendChild(row);
+  };
+
+  const addDefaultSubjectFields = () => {
+    addSubjectFieldRow("", "", 100);
+  };
+
+  const validatePasswordCriteria = () => {
+    const pass = document.getElementById('signup-pass').value;
+    
+    const rules = {
+      length: pass.length >= 8,
+      upper: /[A-Z]/.test(pass),
+      lower: /[a-z]/.test(pass),
+      digit: /\d/.test(pass),
+      spec: /[@$!%*?&]/.test(pass)
+    };
+    
+    const updateCrit = (id, isValid) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      
+      const dot = el.querySelector('.crit-dot');
+      if (isValid) {
+        el.style.color = "var(--color-success)";
+        if (dot) dot.style.background = "var(--color-success)";
+      } else {
+        el.style.color = "var(--color-danger)";
+        if (dot) dot.style.background = "var(--color-danger)";
+      }
+    };
+    
+    updateCrit('crit-length', rules.length);
+    updateCrit('crit-upper', rules.upper);
+    updateCrit('crit-lower', rules.lower);
+    updateCrit('crit-digit', rules.digit);
+    updateCrit('crit-spec', rules.spec);
+    
+    return Object.values(rules).every(Boolean);
   };
 
   // Interactive navigation tabs
@@ -1300,35 +1448,6 @@
     }
   };
 
-  // Database Save
-  const saveToDatabase = () => {
-    localStorage.setItem('student_grades_db', JSON.stringify(students));
-  };
-
-  // Database Reset
-  const clearDatabase = () => {
-    if (confirm("Are you sure you want to completely wipe the student database? All unsaved data will be lost.")) {
-      students = [];
-      saveToDatabase();
-      refreshDashboard();
-      resetForm();
-    }
-  };
-
-  // Load sample dataset matching the Java CLI tracker
-  const loadSampleData = () => {
-    students = [
-      { id: "1", name: "Aarav Mehta", roll: "101", grades: { math: 88, science: 92, english: 75, history: 80, computer: 95 } },
-      { id: "2", name: "Sneha Patil", roll: "102", grades: { math: 76, science: 68, english: 89, history: 72, computer: 84 } },
-      { id: "3", name: "Rohan Desai", roll: "103", grades: { math: 92, science: 95, english: 88, history: 91, computer: 97 } },
-      { id: "4", name: "Priya Sharma", roll: "104", grades: { math: 61, science: 73, english: 80, history: 65, computer: 70 } },
-      { id: "5", name: "Karan Joshi", roll: "105", grades: { math: 84, science: 79, english: 71, history: 77, computer: 88 } }
-    ];
-    saveToDatabase();
-    showError("");
-    refreshDashboard();
-  };
-
   const showError = (msg) => {
     const el = document.getElementById('err-msg');
     el.textContent = msg;
@@ -1344,10 +1463,275 @@
     document.getElementById('btn-cancel').style.display = "none";
     document.getElementById('inp-roll').removeAttribute('disabled');
     showError("");
-    resetSliderBadges();
+    
+    // Clear dynamic subject list and populate defaults
+    document.getElementById('subject-fields-container').innerHTML = '';
+    addDefaultSubjectFields();
   };
 
-  // Add or edit student
+  // Database Save
+  const saveToDatabase = () => {
+    if (currentUser) {
+      localStorage.setItem(`student_grades_db_${currentUser.id}`, JSON.stringify(students));
+    }
+  };
+
+  // Database Reset
+  const clearDatabase = () => {
+    if (confirm("Are you sure you want to completely wipe your student database? All unsaved data will be lost.")) {
+      students = [];
+      saveToDatabase();
+      refreshDashboard();
+      resetForm();
+    }
+  };
+
+  // Load sample dataset matching the Java CLI tracker
+  const loadSampleData = () => {
+    loadDefaultSampleData();
+  };
+
+  // Load Default Baseline Samples
+  const loadDefaultSampleData = () => {
+    students = [
+      {
+        id: "1",
+        name: "Aarav Mehta",
+        roll: "101",
+        subjectsList: [
+          { name: "Math", obtained: 88, total: 100 },
+          { name: "Science", obtained: 92, total: 100 },
+          { name: "English", obtained: 75, total: 100 },
+          { name: "History", obtained: 80, total: 100 },
+          { name: "Computer", obtained: 95, total: 100 }
+        ]
+      },
+      {
+        id: "2",
+        name: "Sneha Patil",
+        roll: "102",
+        subjectsList: [
+          { name: "Math", obtained: 76, total: 100 },
+          { name: "Science", obtained: 68, total: 100 },
+          { name: "English", obtained: 89, total: 100 },
+          { name: "History", obtained: 72, total: 100 },
+          { name: "Computer", obtained: 84, total: 100 }
+        ]
+      },
+      {
+        id: "3",
+        name: "Rohan Desai",
+        roll: "103",
+        subjectsList: [
+          { name: "Math", obtained: 92, total: 100 },
+          { name: "Science", obtained: 95, total: 100 },
+          { name: "English", obtained: 88, total: 100 },
+          { name: "History", obtained: 91, total: 100 },
+          { name: "Computer", obtained: 97, total: 100 }
+        ]
+      },
+      {
+        id: "4",
+        name: "Priya Sharma",
+        roll: "104",
+        subjectsList: [
+          { name: "Math", obtained: 61, total: 100 },
+          { name: "Science", obtained: 73, total: 100 },
+          { name: "English", obtained: 80, total: 100 },
+          { name: "History", obtained: 65, total: 100 },
+          { name: "Computer", obtained: 70, total: 100 }
+        ]
+      },
+      {
+        id: "5",
+        name: "Karan Joshi",
+        roll: "105",
+        subjectsList: [
+          { name: "Math", obtained: 84, total: 100 },
+          { name: "Science", obtained: 79, total: 100 },
+          { name: "English", obtained: 71, total: 100 },
+          { name: "History", obtained: 77, total: 100 },
+          { name: "Computer", obtained: 88, total: 100 }
+        ]
+      }
+    ];
+    saveToDatabase();
+    showError("");
+    refreshDashboard();
+  };
+
+  // ── User Authentication Logic ──────────────
+  const switchAuthTab = (mode) => {
+    currentAuthTab = mode;
+    document.getElementById('btn-login-tab').classList.toggle('active', mode === 'login');
+    document.getElementById('btn-signup-tab').classList.toggle('active', mode === 'signup');
+    document.getElementById('login-form').style.display = mode === 'login' ? 'block' : 'none';
+    document.getElementById('signup-form').style.display = mode === 'signup' ? 'block' : 'none';
+    document.getElementById('login-err').style.display = 'none';
+    document.getElementById('signup-err').style.display = 'none';
+    
+    // Update premium title headers dynamically
+    const logoEl = document.getElementById('auth-logo');
+    const titleEl = document.getElementById('auth-title');
+    const subEl = document.getElementById('auth-subtitle');
+    if (logoEl && titleEl && subEl) {
+      if (mode === 'login') {
+        logoEl.textContent = '🔑';
+        titleEl.textContent = 'Teacher Portal';
+        subEl.textContent = 'Access your private grades and subject dashboards';
+      } else {
+        logoEl.textContent = '👤';
+        titleEl.textContent = 'Register Account';
+        subEl.textContent = 'Create secure credentials to isolate class records';
+      }
+    }
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    const usernameInput = document.getElementById('signup-username').value.trim();
+    const emailInput = document.getElementById('signup-email').value.trim();
+    const pass = document.getElementById('signup-pass').value;
+    const confirmPass = document.getElementById('signup-confirm').value;
+    const errEl = document.getElementById('signup-err');
+    
+    errEl.style.display = 'none';
+    
+    if (usernameInput.length < 3) {
+      errEl.textContent = "Username must be at least 3 characters.";
+      errEl.style.display = 'block';
+      return;
+    }
+    if (emailInput.length < 3) {
+      errEl.textContent = "Please enter a valid email or phone number.";
+      errEl.style.display = 'block';
+      return;
+    }
+    
+    // Strong password criteria validation
+    const hasUpper = /[A-Z]/.test(pass);
+    const hasLower = /[a-z]/.test(pass);
+    const hasDigit = /\d/.test(pass);
+    const hasSpec = /[@$!%*?&]/.test(pass);
+    const hasLength = pass.length >= 8;
+    
+    if (!hasLength || !hasUpper || !hasLower || !hasDigit || !hasSpec) {
+      errEl.textContent = "Password must meet all specified criteria: 8+ characters, uppercase, lowercase, digit, and special character.";
+      errEl.style.display = 'block';
+      return;
+    }
+    
+    if (pass !== confirmPass) {
+      errEl.textContent = "Passwords do not match.";
+      errEl.style.display = 'block';
+      return;
+    }
+
+    const usersList = JSON.parse(localStorage.getItem('grades_users') || '[]');
+    const exists = usersList.some(u => 
+      u.username.toLowerCase() === usernameInput.toLowerCase() || 
+      u.emailOrPhone.toLowerCase() === emailInput.toLowerCase()
+    );
+    
+    if (exists) {
+      errEl.textContent = "Username or Email/Phone is already registered.";
+      errEl.style.display = 'block';
+      return;
+    }
+
+    const newUser = {
+      id: String(Date.now()),
+      username: usernameInput,
+      emailOrPhone: emailInput,
+      password: pass
+    };
+    
+    usersList.push(newUser);
+    localStorage.setItem('grades_users', JSON.stringify(usersList));
+    
+    // Switch to login tab and pre-populate credentials
+    switchAuthTab('login');
+    document.getElementById('login-cred').value = usernameInput;
+    
+    // Display emerald green success message
+    const loginErrEl = document.getElementById('login-err');
+    loginErrEl.textContent = "Registration successful! Please log in to continue.";
+    loginErrEl.style.color = "#10b981"; // Vibrant emerald success green
+    loginErrEl.style.display = "block";
+    
+    document.getElementById('signup-form').reset();
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const cred = document.getElementById('login-cred').value.trim().toLowerCase();
+    const pass = document.getElementById('login-pass').value;
+    const errEl = document.getElementById('login-err');
+    
+    errEl.style.display = 'none';
+    errEl.style.color = 'var(--color-danger)'; // Reset to red in case of previous success message
+    
+    const usersList = JSON.parse(localStorage.getItem('grades_users') || '[]');
+    const user = usersList.find(u => 
+      (u.username.toLowerCase() === cred || u.emailOrPhone.toLowerCase() === cred) && 
+      u.password === pass
+    );
+    
+    if (!user) {
+      errEl.textContent = "Invalid username, email, phone, or password.";
+      errEl.style.display = 'block';
+      return;
+    }
+
+    loginUser(user);
+    document.getElementById('login-form').reset();
+  };
+
+  const loginUser = (user) => {
+    currentUser = user;
+    localStorage.setItem('grades_session', JSON.stringify(user));
+    
+    document.getElementById('user-username').textContent = user.username;
+    const initials = user.username.slice(0, 2).toUpperCase();
+    document.getElementById('user-avatar').textContent = initials;
+    
+    document.getElementById('auth-view').style.display = 'none';
+    document.getElementById('dashboard-view').style.display = 'block';
+    document.getElementById('header-actions').style.display = 'flex';
+    
+    loadUserDatabase();
+  };
+
+  const logout = () => {
+    if (confirm("Are you sure you want to log out?")) {
+      currentUser = null;
+      localStorage.removeItem('grades_session');
+      
+      document.getElementById('dashboard-view').style.display = 'none';
+      document.getElementById('header-actions').style.display = 'none';
+      document.getElementById('auth-view').style.display = 'block';
+      switchAuthTab('login');
+      
+      resetForm();
+    }
+  };
+
+  const loadUserDatabase = () => {
+    const saved = localStorage.getItem(`student_grades_db_${currentUser.id}`);
+    if (saved) {
+      try {
+        students = JSON.parse(saved);
+        refreshDashboard();
+      } catch (e) {
+        console.error("Failed to parse database, loading samples", e);
+        loadDefaultSampleData();
+      }
+    } else {
+      loadDefaultSampleData();
+    }
+  };
+
+  // Add or edit student dynamically
   const handleFormSubmit = (e) => {
     e.preventDefault();
     
@@ -1369,17 +1753,49 @@
       }
     }
     
-    const grades = {};
-    SUBJECTS.forEach(sub => {
-      grades[sub] = parseInt(document.getElementById(`score-${sub}`).value);
+    // Parse dynamic subjects list
+    const subjectRows = document.querySelectorAll('#subject-fields-container .subject-row');
+    if (subjectRows.length === 0) {
+      showError("Please add at least one subject.");
+      return;
+    }
+    
+    const subjectsList = [];
+    let parsingError = false;
+    
+    subjectRows.forEach(row => {
+      const subName = row.querySelector('.sub-name-input').value.trim();
+      const obtained = parseFloat(row.querySelector('.sub-obtained-input').value);
+      const total = parseFloat(row.querySelector('.sub-total-input').value);
+      
+      if (!subName) {
+        parsingError = true;
+        showError("Subject name cannot be empty.");
+      }
+      if (isNaN(obtained) || obtained < 0) {
+        parsingError = true;
+        showError("Obtained marks must be a positive number.");
+      }
+      if (isNaN(total) || total <= 0) {
+        parsingError = true;
+        showError("Max marks must be greater than 0.");
+      }
+      if (obtained > total) {
+        parsingError = true;
+        showError(`Obtained marks cannot exceed Max marks for ${subName}.`);
+      }
+      
+      subjectsList.push({ name: subName, obtained, total });
     });
+    
+    if (parsingError) return;
     
     if (editId) {
       // Edit mode
       const idx = students.findIndex(s => s.id === editId);
       if (idx !== -1) {
         students[idx].name = name;
-        students[idx].grades = grades;
+        students[idx].subjectsList = subjectsList;
       }
     } else {
       // Add mode
@@ -1387,10 +1803,11 @@
         id: String(Date.now()),
         name,
         roll,
-        grades
+        subjectsList
       };
       students.push(newStudent);
     }
+    
     saveToDatabase();
     resetForm();
     refreshDashboard();
@@ -1406,11 +1823,18 @@
     document.getElementById('inp-roll').value = s.roll;
     document.getElementById('inp-roll').setAttribute('disabled', 'true');
     
-    SUBJECTS.forEach(sub => {
-      document.getElementById(`score-${sub}`).value = s.grades[sub];
+    // Load dynamic subject rows
+    const container = document.getElementById('subject-fields-container');
+    container.innerHTML = '';
+    
+    const list = s.subjectsList || [];
+    list.forEach(sub => {
+      addSubjectFieldRow(sub.name, sub.obtained, sub.total);
     });
     
-    resetSliderBadges();
+    if (list.length === 0) {
+      addDefaultSubjectFields();
+    }
     
     document.getElementById('form-title-text').textContent = "Edit Student Grades";
     document.getElementById('btn-submit').innerHTML = "<span>💾</span> Save Changes";
@@ -1438,6 +1862,7 @@
 
   // Recalculate stats and refresh visual containers
   const refreshDashboard = () => {
+    rebuildSortDropdown();
     updateStatistics();
     renderData();
     
@@ -1445,6 +1870,42 @@
       renderAnalytics();
     } else if (currentTab === 'leaderboard') {
       renderLeaderboard();
+    }
+  };
+
+  // Rebuild sort select menu on the fly based on current unique subjects
+  const rebuildSortDropdown = () => {
+    const select = document.getElementById('sort-sel');
+    if (!select) return;
+    const currentValue = select.value;
+    
+    let html = `
+      <option value="name">Name</option>
+      <option value="roll">Roll No</option>
+      <option value="avg-desc">Overall Percentage (High to Low)</option>
+      <option value="avg-asc">Overall Percentage (Low to High)</option>
+    `;
+    
+    const subjects = new Set();
+    students.forEach(s => {
+      const list = s.subjectsList || [];
+      list.forEach(sub => {
+        if (sub.name) {
+          subjects.add(sub.name.trim());
+        }
+      });
+    });
+    
+    subjects.forEach(sub => {
+      html += `<option value="${sub.toLowerCase()}-desc">${escHtml(sub)} Score (High to Low)</option>`;
+    });
+    
+    select.innerHTML = html;
+    
+    const options = Array.from(select.options);
+    const exists = options.some(opt => opt.value === currentValue);
+    if (exists) {
+      select.value = currentValue;
     }
   };
 
@@ -1458,7 +1919,6 @@
     const update = (now) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out quad formula
       const ease = progress * (2 - progress);
       const current = startVal + (targetVal - startVal) * ease;
       
@@ -1487,38 +1947,35 @@
       return;
     }
     
-    // Overall Average
-    let totalAvg = 0;
-    let highestAvg = -1;
+    let totalPct = 0;
+    let highestPct = -1;
     let highestStudent = null;
     let passingCount = 0;
     
     students.forEach(s => {
-      const avg = calculateAverage(s.grades);
-      totalAvg += avg;
+      const pct = calculateStudentPercentage(s);
+      totalPct += pct;
       
-      if (avg > highestAvg) {
-        highestAvg = avg;
+      if (pct > highestPct) {
+        highestPct = pct;
         highestStudent = s;
       }
       
-      if (avg >= 60) {
+      if (pct >= 60) {
         passingCount++;
       }
     });
     
-    const classAvg = Math.round((totalAvg / count) * 10) / 10;
+    const classAvg = Math.round((totalPct / count) * 10) / 10;
     const passRate = Math.round((passingCount / count) * 100);
     
-    // Animate Statistics Values
     animateCounter('stat-count', count);
     animateCounter('stat-avg', classAvg, true);
     document.getElementById('stat-avg-grade').textContent = `Grade ${getLetterGrade(classAvg)}`;
     
-    animateCounter('stat-top-val', highestAvg, true);
+    animateCounter('stat-top-val', highestPct, true);
     document.getElementById('stat-top-name').textContent = highestStudent ? highestStudent.name.split(' ')[0] : '—';
     
-    // Custom animate pass rate text
     const passEl = document.getElementById('stat-pass-val');
     const startPass = parseInt(passEl.textContent) || 0;
     const duration = 500;
@@ -1545,33 +2002,37 @@
     const q = document.getElementById('search-inp').value.toLowerCase().trim();
     const sortVal = document.getElementById('sort-sel').value;
     
-    // Filter
     let filtered = students.filter(s => {
       return s.name.toLowerCase().includes(q) || s.roll.toLowerCase().includes(q);
     });
     
-    // Sort
     filtered.sort((a, b) => {
       if (sortVal === 'name') {
         return a.name.localeCompare(b.name);
       }
       if (sortVal === 'roll') {
-        // Numeric sort if applicable
         const aNum = parseInt(a.roll);
         const bNum = parseInt(b.roll);
         if (!isNaN(aNum) && !isNaN(bNum)) return aNum - bNum;
         return a.roll.localeCompare(b.roll);
       }
       if (sortVal === 'avg-desc') {
-        return calculateAverage(b.grades) - calculateAverage(a.grades);
+        return calculateStudentPercentage(b) - calculateStudentPercentage(a);
       }
       if (sortVal === 'avg-asc') {
-        return calculateAverage(a.grades) - calculateAverage(b.grades);
+        return calculateStudentPercentage(a) - calculateStudentPercentage(b);
       }
-      // Subject specific sorting
       if (sortVal.endsWith('-desc')) {
-        const sub = sortVal.split('-')[0];
-        return b.grades[sub] - a.grades[sub];
+        const sub = sortVal.split('-')[0].toLowerCase();
+        
+        const getSubPct = (stud) => {
+          const list = stud.subjectsList || [];
+          const found = list.find(s => s.name.toLowerCase() === sub);
+          if (!found || found.total === 0) return -1;
+          return found.obtained / found.total * 100;
+        };
+        
+        return getSubPct(b) - getSubPct(a);
       }
       return 0;
     });
@@ -1579,7 +2040,7 @@
     return filtered;
   };
 
-  // Render Roster list
+  // Render Roster list dynamically
   const renderData = () => {
     const tbody = document.getElementById('roster-body');
     const emptyState = document.getElementById('empty-state');
@@ -1598,69 +2059,85 @@
     const list = getSortedAndFilteredData();
     
     tbody.innerHTML = list.map(s => {
-      const avg = calculateAverage(s.grades);
-      const letter = getLetterGrade(avg);
-      const status = getStatus(avg);
+      const pct = calculateStudentPercentage(s);
+      const letter = getLetterGrade(pct);
+      const status = getStatus(pct);
       
-      return `<tr>
+      let totalObtained = 0;
+      let totalMax = 0;
+      const subList = s.subjectsList || [];
+      subList.forEach(sub => {
+        totalObtained += sub.obtained;
+        totalMax += sub.total;
+      });
+      
+      const subNamesSummary = subList.map(sub => sub.name).join(', ') || 'None';
+      const isExpanded = expandedStudents.has(s.id);
+      
+      let rowHtml = `
+      <tr style="cursor: pointer;" onclick="toggleReportCard('${s.id}')" title="Click to view detailed report card">
         <td style="font-weight: 700; color: var(--color-text-secondary)">#${escHtml(s.roll)}</td>
-        <td style="font-weight: 700; font-size:14px; color: var(--color-text-primary)">${escHtml(s.name)}</td>
-        
-        <td style="text-align: center">
-          <div class="subject-grade-cell" style="color: var(--color-math)">
-            <span>${s.grades.math}</span>
-            <span class="subject-name-sub">Math</span>
-          </div>
+        <td style="font-weight: 700; font-size:14px; color: var(--color-text-primary)">
+          <span>${isExpanded ? '▼' : '▶'}</span> ${escHtml(s.name)}
         </td>
-        <td style="text-align: center">
-          <div class="subject-grade-cell" style="color: var(--color-science)">
-            <span>${s.grades.science}</span>
-            <span class="subject-name-sub">Sci</span>
-          </div>
+        <td style="color: var(--color-text-secondary); max-width: 160px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+          ${escHtml(subNamesSummary)}
         </td>
-        <td style="text-align: center">
-          <div class="subject-grade-cell" style="color: var(--color-english)">
-            <span>${s.grades.english}</span>
-            <span class="subject-name-sub">Eng</span>
-          </div>
+        <td style="text-align: center; font-weight: 700;">
+          ${totalObtained} <span style="color: var(--color-text-tertiary); font-weight: 500;">/</span> ${totalMax}
         </td>
-        <td style="text-align: center">
-          <div class="subject-grade-cell" style="color: var(--color-history)">
-            <span>${s.grades.history}</span>
-            <span class="subject-name-sub">His</span>
-          </div>
-        </td>
-        <td style="text-align: center">
-          <div class="subject-grade-cell" style="color: var(--color-computer)">
-            <span>${s.grades.computer}</span>
-            <span class="subject-name-sub">Comp</span>
-          </div>
-        </td>
-        
         <td>
           <div style="display: flex; flex-direction: column; gap: 4px;">
-            <span style="font-weight: 800; font-size:14px; color: var(--color-primary)">${avg}</span>
+            <span style="font-weight: 800; font-size:14px; color: var(--color-primary)">${pct}%</span>
             <div class="sgr-progress-bar" style="background: var(--color-bg-surface-secondary); width:100px; height: 5px; border-radius: 99px; overflow: hidden; border:0.5px solid var(--color-border-secondary)">
-              <div style="width: ${avg}%; height: 100%; background: var(--primary-gradient);"></div>
+              <div style="width: ${pct}%; height: 100%; background: var(--primary-gradient);"></div>
             </div>
           </div>
         </td>
-        
         <td style="text-align: center">
           <span class="g-badge ${getGradeClass(letter)}">${letter}</span>
         </td>
-        
         <td style="text-align: center">
           <span class="status-badge ${status === 'PASS' ? 'status-pass' : 'status-fail'}">${status}</span>
         </td>
-        
-        <td style="text-align: center">
+        <td style="text-align: center" onclick="event.stopPropagation()">
           <div class="action-btns">
             <button class="btn-icon" onclick="editStudent('${s.id}')" aria-label="Edit grades for ${escHtml(s.name)}">✏️</button>
             <button class="btn-icon btn-delete" onclick="deleteStudent('${s.id}')" aria-label="Delete record for ${escHtml(s.name)}">🗑️</button>
           </div>
         </td>
       </tr>`;
+      
+      if (isExpanded) {
+        rowHtml += `
+        <tr onclick="toggleReportCard('${s.id}')">
+          <td colspan="8" style="background: var(--color-bg-surface-secondary); padding: 1.25rem 2rem;">
+            <div style="animation: fadeIn 0.3s ease; border: 1px dashed var(--color-border-primary); border-radius: var(--border-radius-md); padding: 1.25rem; background: var(--color-bg-surface); box-shadow: var(--shadow-sm);">
+              <h4 style="font-size: 13px; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
+                📋 Detailed Report Card — ${escHtml(s.name)}
+              </h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 12px;">
+                ${subList.map(sub => {
+                  const subPct = sub.total > 0 ? Math.round((sub.obtained / sub.total * 100) * 10) / 10 : 0;
+                  const subLetter = getLetterGrade(subPct);
+                  return `
+                  <div style="background: var(--color-bg-surface-secondary); border: 1.5px solid var(--color-border-secondary); padding: 10px; border-radius: var(--border-radius-md); text-align: center;">
+                    <p style="font-size: 11px; font-weight: 700; color: var(--color-text-tertiary); text-transform: uppercase; margin-bottom: 4px;">${escHtml(sub.name)}</p>
+                    <p style="font-size: 18px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 2px;">${sub.obtained} <span style="font-size: 12px; font-weight: 600; color: var(--color-text-tertiary)">/ ${sub.total}</span></p>
+                    <span class="g-badge ${getGradeClass(subLetter)}" style="font-size: 10px; padding: 1px 6px;">${subLetter} (${subPct}%)</span>
+                  </div>`;
+                }).join('')}
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border-secondary); padding-top: 10px; font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">
+                <span>Total Subjects: ${subList.length}</span>
+                <span>Cumulative Score: ${totalObtained} / ${totalMax} (${pct}%)</span>
+              </div>
+            </div>
+          </td>
+        </tr>`;
+      }
+      
+      return rowHtml;
     }).join('');
   };
 
@@ -1678,8 +2155,8 @@
     // Grade distribution counts
     const dist = { A: 0, B: 0, C: 0, D: 0, F: 0 };
     students.forEach(s => {
-      const avg = calculateAverage(s.grades);
-      const letter = getLetterGrade(avg);
+      const pct = calculateStudentPercentage(s);
+      const letter = getLetterGrade(pct);
       dist[letter]++;
     });
     
@@ -1691,8 +2168,6 @@
       const pct = Math.round((count / students.length) * 100);
       const barWidth = Math.round((count / maxVal) * 100);
       
-      let badgeClass = getGradeClass(letter);
-      
       return `<div class="grade-chart-row">
         <span class="grade-chart-lbl">${letter}</span>
         <div class="grade-chart-track">
@@ -1703,47 +2178,71 @@
       </div>`;
     }).join('');
     
-    // Subject Performance Analytics Calculations
-    subjectContainer.innerHTML = SUBJECTS.map(sub => {
-      let sum = 0;
-      let highest = -1;
+    // Compile dynamic unique subjects
+    const uniqueSubjects = new Set();
+    students.forEach(s => {
+      const list = s.subjectsList || [];
+      list.forEach(sub => {
+        if (sub.name) uniqueSubjects.add(sub.name.trim());
+      });
+    });
+    
+    if (uniqueSubjects.size === 0) {
+      subjectContainer.innerHTML = '<p style="text-align:center; padding:1rem; color:var(--color-text-tertiary);">No subject records found.</p>';
+      return;
+    }
+    
+    const colors = ["#4f46e5", "#06b6d4", "#ec4899", "#f59e0b", "#10b981", "#8b5cf6", "#3b82f6", "#ef4444"];
+    
+    let subIdx = 0;
+    subjectContainer.innerHTML = Array.from(uniqueSubjects).map(subName => {
+      let sumPct = 0;
+      let count = 0;
+      let highestVal = -1;
       let highestName = "—";
-      let lowest = 101;
+      let lowestVal = 101;
       let lowestName = "—";
       
       students.forEach(s => {
-        const val = s.grades[sub];
-        sum += val;
-        
-        if (val > highest) {
-          highest = val;
-          highestName = s.name.split(' ')[0];
-        }
-        
-        if (val < lowest) {
-          lowest = val;
-          lowestName = s.name.split(' ')[0];
+        const list = s.subjectsList || [];
+        const found = list.find(x => x.name.trim().toLowerCase() === subName.toLowerCase());
+        if (found && found.total > 0) {
+          const subPct = found.obtained / found.total * 100;
+          sumPct += subPct;
+          count++;
+          
+          if (subPct > highestVal) {
+            highestVal = subPct;
+            highestName = s.name.split(' ')[0];
+          }
+          if (subPct < lowestVal) {
+            lowestVal = subPct;
+            lowestName = s.name.split(' ')[0];
+          }
         }
       });
       
-      const avg = Math.round((sum / students.length) * 10) / 10;
-      const subColor = SUBJECT_COLORS[sub];
+      if (count === 0) return '';
+      
+      const avg = Math.round((sumPct / count) * 10) / 10;
+      const subColor = colors[subIdx % colors.length];
+      subIdx++;
       
       return `<div class="sub-perf-card" style="--sub-color: ${subColor}">
-        <p class="sub-perf-title">${SUBJECT_LABELS[sub]}</p>
-        <p class="sub-perf-avg">${avg}</p>
+        <p class="sub-perf-title">${escHtml(subName)}</p>
+        <p class="sub-perf-avg">${avg}%</p>
         <div class="sub-perf-bar-track">
           <div class="sub-perf-bar-fill" style="width: ${avg}%"></div>
         </div>
         <div class="sub-perf-highlow">
           <div>
             <span class="highlow-lbl">HI</span>
-            <span style="font-weight:700">${highest}</span>
+            <span style="font-weight:700">${Math.round(highestVal)}%</span>
             <span class="sub-perf-name" title="${escHtml(highestName)}">${escHtml(highestName)}</span>
           </div>
           <div style="text-align: right">
             <span class="highlow-lbl">LO</span>
-            <span style="font-weight:700">${lowest}</span>
+            <span style="font-weight:700">${Math.round(lowestVal)}%</span>
             <span class="sub-perf-name" title="${escHtml(lowestName)}" style="margin-left: auto">${escHtml(lowestName)}</span>
           </div>
         </div>
@@ -1760,14 +2259,13 @@
       return;
     }
     
-    // Sort students by average
     const ranked = [...students].sort((a, b) => {
-      return calculateAverage(b.grades) - calculateAverage(a.grades);
+      return calculateStudentPercentage(b) - calculateStudentPercentage(a);
     });
     
     container.innerHTML = ranked.map((s, idx) => {
-      const avg = calculateAverage(s.grades);
-      const letter = getLetterGrade(avg);
+      const pct = calculateStudentPercentage(s);
+      const letter = getLetterGrade(pct);
       const rank = idx + 1;
       
       let rankBadge = `${rank}`;
@@ -1777,28 +2275,35 @@
       else if (rank === 3) rankBadge = "🥉";
       else rankClass = "";
       
-      return `<div class="leader-item ${rankClass}">
+      const subList = s.subjectsList || [];
+      let totalObtained = 0;
+      let totalMax = 0;
+      subList.forEach(x => {
+        totalObtained += x.obtained;
+        totalMax += x.total;
+      });
+      
+      return `<div class="leader-item ${rankClass}" style="cursor: pointer;" onclick="switchTab('roster'); toggleReportCard('${s.id}');">
         <div class="leader-rank">${rankBadge}</div>
         <div class="leader-info">
           <p class="leader-name">${escHtml(s.name)}</p>
-          <p class="leader-meta">Roll No: ${escHtml(s.roll)} • Math: ${s.grades.math} | Sci: ${s.grades.science} | Comp: ${s.grades.computer}</p>
+          <p class="leader-meta">Roll No: ${escHtml(s.roll)} • Cumulative Score: ${totalObtained} / ${totalMax} • Enrolled in ${subList.length} subjects</p>
         </div>
         <div class="leader-score-cell">
-          <p class="leader-avg">${avg}</p>
+          <p class="leader-avg">${pct}%</p>
           <span class="g-badge ${getGradeClass(letter)} leader-badge" style="font-size: 10px; padding: 2px 8px">${letter}</span>
         </div>
       </div>`;
     }).join('');
   };
 
-  // Export full grade matrix to CSV sheet
+  // Export dynamic customized subjects to CSV sheet
   const exportCSV = () => {
     if (students.length === 0) {
       alert("No student data available to export.");
       return;
     }
     
-    // Order by Roll Number for exports
     const exportList = [...students].sort((a, b) => {
       const aNum = parseInt(a.roll);
       const bNum = parseInt(b.roll);
@@ -1806,24 +2311,46 @@
       return a.roll.localeCompare(b.roll);
     });
     
-    const rows = [
-      ["Roll Number", "Full Name", "Math Score", "Science Score", "English Score", "History Score", "Computer Score", "Overall Average", "Letter Grade", "Pass Status"]
-    ];
+    // Scan all unique subjects across the database to create dynamic columns
+    const uniqueSubjects = new Set();
+    exportList.forEach(s => {
+      const list = s.subjectsList || [];
+      list.forEach(sub => {
+        if (sub.name) uniqueSubjects.add(sub.name.trim());
+      });
+    });
+    
+    const subArray = Array.from(uniqueSubjects);
+    
+    const headers = ["Roll Number", "Full Name"];
+    subArray.forEach(sub => {
+      headers.push(`${sub} Obtained`, `${sub} Total`);
+    });
+    headers.push("Cumulative Obtained", "Cumulative Max", "Weighted Percentage", "Letter Grade", "Pass Status");
+    
+    const rows = [headers];
     
     exportList.forEach(s => {
-      const avg = calculateAverage(s.grades);
-      rows.push([
-        s.roll,
-        s.name,
-        s.grades.math,
-        s.grades.science,
-        s.grades.english,
-        s.grades.history,
-        s.grades.computer,
-        avg,
-        getLetterGrade(avg),
-        getStatus(avg)
-      ]);
+      const row = [s.roll, s.name];
+      const subList = s.subjectsList || [];
+      
+      let sumObtained = 0;
+      let sumMax = 0;
+      
+      subArray.forEach(subName => {
+        const found = subList.find(x => x.name.trim().toLowerCase() === subName.toLowerCase());
+        if (found) {
+          row.push(found.obtained, found.total);
+          sumObtained += found.obtained;
+          sumMax += found.total;
+        } else {
+          row.push("", ""); // empty cells if student didn't enroll in this subject
+        }
+      });
+      
+      const pct = calculateStudentPercentage(s);
+      row.push(sumObtained, sumMax, `${pct}%`, getLetterGrade(pct), getStatus(pct));
+      rows.push(row);
     });
     
     const csvContent = "data:text/csv;charset=utf-8," 
@@ -1838,7 +2365,7 @@
     document.body.removeChild(link);
   };
 
-  // Import CSV sheets parsing
+  // Import dynamic subject CSV spreadsheets
   const importCSV = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -1853,7 +2380,6 @@
           return;
         }
         
-        // Simple CSV cell splitter (handles quotation marks)
         const parseCSVLine = (line) => {
           const cells = [];
           let current = "";
@@ -1876,19 +2402,26 @@
         
         const headers = parseCSVLine(lines[0]).map(h => h.toLowerCase().replace(/\s+/g, ''));
         
-        // Find indices
         const rollIdx = headers.findIndex(h => h.includes('roll'));
         const nameIdx = headers.findIndex(h => h.includes('name'));
-        const mathIdx = headers.findIndex(h => h.includes('math'));
-        const sciIdx = headers.findIndex(h => h.includes('sci'));
-        const engIdx = headers.findIndex(h => h.includes('eng'));
-        const hisIdx = headers.findIndex(h => h.includes('his'));
-        const compIdx = headers.findIndex(h => h.includes('comp') || h.includes('cs'));
         
         if (rollIdx === -1 || nameIdx === -1) {
           alert("CSV must contain 'Roll Number' and 'Full Name' columns.");
           return;
         }
+        
+        // Find subject columns dynamically!
+        const subjectIndices = []; 
+        headers.forEach((h, idx) => {
+          if (h.includes('obtained') && !h.includes('cumulative')) {
+            const subName = parseCSVLine(lines[0])[idx].replace(/\s*obtained\s*/i, '').trim();
+            const cleanSub = subName.toLowerCase().replace(/\s+/g, '');
+            const totalIdx = headers.findIndex(x => x.includes(cleanSub) && x.includes('total'));
+            if (totalIdx !== -1) {
+              subjectIndices.push({ name: subName, obtainedIdx: idx, totalIdx });
+            }
+          }
+        });
         
         const imported = [];
         let skippedCount = 0;
@@ -1905,29 +2438,47 @@
             continue;
           }
           
-          // Parse grades with safe fallback defaults
-          const getVal = (idx) => {
-            if (idx === -1 || idx >= cells.length) return 80;
-            const parsed = parseInt(cells[idx]);
-            return isNaN(parsed) || parsed < 0 || parsed > 100 ? 80 : parsed;
-          };
+          const subjectsList = [];
+          subjectIndices.forEach(sub => {
+            if (sub.obtainedIdx < cells.length && sub.totalIdx < cells.length) {
+              const obtVal = parseFloat(cells[sub.obtainedIdx]);
+              const totVal = parseFloat(cells[sub.totalIdx]);
+              if (!isNaN(obtVal) && !isNaN(totVal) && totVal > 0) {
+                subjectsList.push({ name: sub.name, obtained: obtVal, total: totVal });
+              }
+            }
+          });
+          
+          // Fallback to legacy static format imports
+          if (subjectsList.length === 0) {
+            const mathIdx = headers.findIndex(h => h.includes('math'));
+            const sciIdx = headers.findIndex(h => h.includes('sci'));
+            const engIdx = headers.findIndex(h => h.includes('eng'));
+            const hisIdx = headers.findIndex(h => h.includes('his'));
+            const compIdx = headers.findIndex(h => h.includes('comp') || h.includes('cs'));
+            
+            const getVal = (idx) => {
+              if (idx === -1 || idx >= cells.length) return 80;
+              const parsed = parseInt(cells[idx]);
+              return isNaN(parsed) || parsed < 0 || parsed > 100 ? 80 : parsed;
+            };
+            
+            subjectsList.push({ name: "Math", obtained: getVal(mathIdx), total: 100 });
+            subjectsList.push({ name: "Science", obtained: getVal(sciIdx), total: 100 });
+            subjectsList.push({ name: "English", obtained: getVal(engIdx), total: 100 });
+            subjectsList.push({ name: "History", obtained: getVal(hisIdx), total: 100 });
+            subjectsList.push({ name: "Computer", obtained: getVal(compIdx), total: 100 });
+          }
           
           imported.push({
             id: String(Date.now() + i),
             name,
             roll,
-            grades: {
-              math: getVal(mathIdx),
-              science: getVal(sciIdx),
-              english: getVal(engIdx),
-              history: getVal(hisIdx),
-              computer: getVal(compIdx)
-            }
+            subjectsList
           });
         }
         
         if (imported.length > 0) {
-          // Merge imported students, skipping conflicting roll numbers
           let mergeCount = 0;
           imported.forEach(newS => {
             const exists = students.some(s => s.roll.toLowerCase() === newS.roll.toLowerCase());
@@ -1949,7 +2500,6 @@
         alert("Failed to parse CSV. Please ensure the formatting matches our export file.");
         console.error(err);
       }
-      // Reset input element
       e.target.value = "";
     };
     reader.readAsText(file);
@@ -1970,20 +2520,27 @@
     loadSavedTheme();
     resetSliderBadges();
     
-    // Automatically load existing database or load default sample data
-    const saved = localStorage.getItem('student_grades_db');
-    if (saved) {
+    // Check for active logged-in session
+    const activeSession = localStorage.getItem('grades_session');
+    if (activeSession) {
       try {
-        students = JSON.parse(saved);
-        refreshDashboard();
+        const user = JSON.parse(activeSession);
+        loginUser(user);
       } catch (e) {
-        console.error("Failed to parse saved database, loading samples.", e);
-        loadSampleData();
+        console.error("Failed to restore session", e);
+        showLoginForm();
       }
     } else {
-      loadSampleData();
+      showLoginForm();
     }
   });
+
+  const showLoginForm = () => {
+    document.getElementById('dashboard-view').style.display = 'none';
+    document.getElementById('header-actions').style.display = 'none';
+    document.getElementById('auth-view').style.display = 'block';
+    switchAuthTab('login');
+  };
 </script>
 </body>
 </html>
