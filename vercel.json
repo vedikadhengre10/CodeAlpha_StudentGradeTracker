@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/StudentGradeTracker.html" },
+    { "source": "/dashboard", "destination": "/StudentGradeTracker.html" }
+  ]
+}
