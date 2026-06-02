@@ -947,8 +947,11 @@
       </div>
     </div>
     <div class="d-actions">
-      <button class="btn-secondary" onclick="loadSampleData()">
+      <button class="btn-secondary" onclick="loadSampleData()" title="Load default sample dataset">
         <span>⚡</span> Load Sample Data
+      </button>
+      <button class="btn-secondary" onclick="clearDatabase()" style="color: var(--color-danger); border-color: rgba(239, 68, 68, 0.4); background: var(--color-danger-bg);" title="Wipe all data and start fresh">
+        <span>🗑️</span> Reset Database
       </button>
       <div class="upload-btn-wrapper">
         <label for="csv-upload" class="btn-secondary btn-upload-label">
@@ -1297,6 +1300,21 @@
     }
   };
 
+  // Database Save
+  const saveToDatabase = () => {
+    localStorage.setItem('student_grades_db', JSON.stringify(students));
+  };
+
+  // Database Reset
+  const clearDatabase = () => {
+    if (confirm("Are you sure you want to completely wipe the student database? All unsaved data will be lost.")) {
+      students = [];
+      saveToDatabase();
+      refreshDashboard();
+      resetForm();
+    }
+  };
+
   // Load sample dataset matching the Java CLI tracker
   const loadSampleData = () => {
     students = [
@@ -1306,6 +1324,7 @@
       { id: "4", name: "Priya Sharma", roll: "104", grades: { math: 61, science: 73, english: 80, history: 65, computer: 70 } },
       { id: "5", name: "Karan Joshi", roll: "105", grades: { math: 84, science: 79, english: 71, history: 77, computer: 88 } }
     ];
+    saveToDatabase();
     showError("");
     refreshDashboard();
   };
@@ -1372,7 +1391,7 @@
       };
       students.push(newStudent);
     }
-    
+    saveToDatabase();
     resetForm();
     refreshDashboard();
   };
@@ -1412,7 +1431,7 @@
       if (document.getElementById('edit-id').value === id) {
         resetForm();
       }
-      
+      saveToDatabase();
       refreshDashboard();
     }
   };
@@ -1921,6 +1940,7 @@
           });
           
           alert(`Successfully imported ${mergeCount} students. Skipped ${skippedCount} duplicates/invalid rows.`);
+          saveToDatabase();
           refreshDashboard();
         } else {
           alert("No valid rows could be imported from the CSV.");
@@ -1950,8 +1970,19 @@
     loadSavedTheme();
     resetSliderBadges();
     
-    // Automatically load sample data for beautiful initial preview state
-    loadSampleData();
+    // Automatically load existing database or load default sample data
+    const saved = localStorage.getItem('student_grades_db');
+    if (saved) {
+      try {
+        students = JSON.parse(saved);
+        refreshDashboard();
+      } catch (e) {
+        console.error("Failed to parse saved database, loading samples.", e);
+        loadSampleData();
+      }
+    } else {
+      loadSampleData();
+    }
   });
 </script>
 </body>
